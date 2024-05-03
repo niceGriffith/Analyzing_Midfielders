@@ -62,38 +62,3 @@ cor(as.numeric(Top_5$SCA),as.numeric(Top_5$GCA),use = "complete.obs")
 x<-lm(Top_5_1$GCA~Top_5_1$SCA)
 
 #view(Top_5)
-#plotting####
-library(ggrepel)
-Palette<-distinctColorPalette(26)
-Top5_Final<-Top_5_1%>%ggplot(aes(x=SCA,y=GCA,label=Player))+
-  xlab("SCA")+ylab("GCA")+
-  geom_hline(yintercept=mean(Top_5_1$GCA),linetype="dotted",col="yellow")+
-  geom_vline(xintercept=mean(Top_5_1$SCA),linetype="dotted",col="yellow")+
-  geom_smooth(method = "lm",color="white",fill="grey25")+
-  geom_point(aes(fill=Palette,color= after_scale(clr_darken(fill,0.3))),shape=23,alpha=.75,size=3)+
-  geom_text_repel(size=2.5,color="white",min.segment.length = unit(0.1,"lines"),fontface="bold" )+
-  theme(
-    legend.position = "none",
-    plot.background = element_rect(fill="grey10",colour ="grey10"),
-    panel.background = element_rect(fill="grey10",colour="grey10"),
-    panel.grid.major = element_blank(),
-    panel.grid.minor = element_blank(),
-    axis.line = element_line(colour = "white"),
-    axis.text = element_text(colour = "white"),
-    axis.title = element_text(colour = "white"),
-    plot.title = element_text(colour = "white",hjust=.5,face = "bold",family ="serif",size=15),
-    plot.subtitle = element_text(colour = "white",hjust=.5,face = "bold",size=8))+
-  labs(title="Shot Creating action VS Goal creating action(Midfielders)", subtitle = "Top 5 Leagues 2023-24")
-Top5_Final
-ggsave("Top_5.png",Laliga_Final,width = 11,height = 6 ,dpi = 300)
-
-#####unused label part####
-#geom_label(x=130,y=19.1,label="High Shot & Goal\n Creating Action",label.size = 0.10,
- #          color = "white",
-  #         fill="gold")+
-  #geom_label(x=130,y=2.6,label="High Shot Creating\n Actions",label.size = 0.10,
-   #          color = "white",
-    #         fill="gold")+
-  #geom_label(x=80,y=19.1,label="High Goal Creating\n Actions",label.size = 0.10,
-   #          color = "white",
-          #   fill="gold")+#
